@@ -19,24 +19,28 @@ function confirmBooking() {
     const eventElement = document.querySelector(`[data-id="${currentEventId}"]`);
     eventElement.remove();
 
-    // Display the booked event on the separate page
+    // Display the booked event on the main page
     displayBookingDetails(currentEventId, name, phone);
 
     closePopup();
 }
 
 function displayBookingDetails(eventId, name, phone) {
-    // Send data to server
-    fetch('http://localhost:3000/confirmBooking', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ eventId, name, phone }),
-    })
-    .then(response => response.text())
-    .then(data => console.log(data))
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+    const detailsContainer = document.getElementById('eventDetails');
+    const eventDiv = document.createElement('div');
+    eventDiv.innerHTML = `<p>Event ${eventId}: ${name}, ${phone}</p>`;
+    detailsContainer.appendChild(eventDiv);
+}
+
+function authenticate() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Simple authentication logic (replace with secure authentication)
+    if (username === 'admin' && password === 'password') {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('eventListContainer').style.display = 'block';
+    } else {
+        alert('Invalid credentials. Try again.');
+    }
 }

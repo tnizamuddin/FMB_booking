@@ -1,63 +1,25 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const eventList = document.getElementById('eventList');
+let currentEventId;
 
-    // Sample event data
-    const events = ['Event 1', 'Event 2', 'Event 3', 'Event 4', 'Event 5'];
+function openPopup(eventId) {
+    currentEventId = eventId;
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('popup').style.display = 'block';
+}
 
-    // Populate the event list
-    events.forEach(event => {
-        const listItem = document.createElement('li');
-        listItem.textContent = event;
+function closePopup() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('popup').style.display = 'none';
+}
 
-        const bookButton = document.createElement('button');
-        bookButton.textContent = 'Book';
-        bookButton.addEventListener('click', function () {
-            // Remove the booked event from the list
-            eventList.removeChild(listItem);
+function confirmBooking() {
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
 
-            // Show the name input field
-            const nameInput = document.getElementById('nameInput');
-            const bookBtn = document.getElementById('bookBtn');
-            nameInput.style.display = 'block';
-            bookBtn.dataset.event = event; // Save the event name in the button dataset
-        });
+    // For simplicity, just removing the event from the list
+    const eventElement = document.querySelector(`[data-id="${currentEventId}"]`);
+    eventElement.remove();
 
-        listItem.appendChild(bookButton);
-        eventList.appendChild(listItem);
-    });
+    // You can add code here to send details (name and phone) to the owner via email
 
-    // Add event listener for the 'Book' button after it's dynamically created
-    document.getElementById('bookBtn').addEventListener('click', function () {
-        // Get the entered name
-        const name = document.getElementById('name').value;
-
-        // Get the booked event from the button dataset
-        const bookedEvent = this.dataset.event;
-
-        // Send email notification
-        sendEmailNotification(name, bookedEvent);
-
-        // Hide the name input field
-        const nameInput = document.getElementById('nameInput');
-        nameInput.style.display = 'none';
-    });
-
-    function sendEmailNotification(name, bookedEvent) {
-        // Replace these placeholders with your Email.js Service ID, User ID, and Template ID
-        const emailjsParams = {
-            serviceId: 'your_service_id',
-            userId: 'your_user_id',
-            templateId: 'your_template_id',
-        };
-
-        emailjs.send(emailjsParams.serviceId, emailjsParams.templateId, {
-            eventName: bookedEvent,
-            attendeeName: name,
-        }, emailjsParams.userId)
-            .then(function (response) {
-                console.log('Email sent successfully:', response);
-            }, function (error) {
-                console.error('Email send failed:', error);
-            });
-    }
-});
+    closePopup();
+}

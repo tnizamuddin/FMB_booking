@@ -3,49 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Booking</title>
     <link rel="stylesheet" href="styles.css">
+    <title>Event Booking</title>
 </head>
 <body>
 
-<h1>Event Booking</h1>
+    <div class="event-container" id="tahir">
+        <h2>Tahir</h2>
+        <button onclick="openBooking('tahir')">Book Event</button>
+        <div class="booking-container" id="booking-tahir"></div>
+    </div>
 
-<div id="loginForm">
-    <label for="username">Username:</label>
-    <input type="text" id="username">
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" id="password">
-    <br>
-    <button onclick="authenticate()">Login</button>
-</div>
+    <div class="event-container" id="husain">
+        <h2>Husain</h2>
+        <button onclick="openBooking('husain')">Book Event</button>
+        <div class="booking-container" id="booking-husain"></div>
+    </div>
 
-<div id="eventListContainer" style="display: none;">
-    <h2>Available Events</h2>
-    <ul class="event-list" id="eventList">
-        <li class="event" data-id="1">
-            Event 1 <button onclick="openPopup(1)">Book</button>
-        </li>
-        <li class="event" data-id="2">
-            Event 2 <button onclick="openPopup(2)">Book</button>
-        </li>
-        <!-- Add more events as needed -->
-    </ul>
-</div>
+    <div class="event-container" id="yousuf">
+        <h2>Yousuf</h2>
+        <button onclick="openBooking('yousuf')">Book Event</button>
+        <div class="booking-container" id="booking-yousuf"></div>
+    </div>
 
-<div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <div class="event-container" id="ali">
+        <h2>Ali</h2>
+        <button onclick="openBooking('ali')">Book Event</button>
+        <div class="booking-container" id="booking-ali"></div>
+    </div>
 
-<div class="popup" id="popup">
-    <label for="name">Name:</label>
-    <input type="text" id="name">
-    <br>
-    <label for="phone">Phone:</label>
-    <input type="text" id="phone">
-    <br>
-    <button onclick="confirmBooking()">Confirm</button>
-    <button onclick="closePopup()">Cancel</button>
-</div>
+    <div class="event-container" id="samina">
+        <h2>Samina</h2>
+        <button onclick="openBooking('samina')">Book Event</button>
+        <div class="booking-container" id="booking-samina"></div>
+    </div>
 
-<script src="script.js"></script>
+    <div id="login-container">
+        <input type="text" placeholder="Username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <button onclick="login()">Log In</button>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

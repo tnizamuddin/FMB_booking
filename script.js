@@ -26,7 +26,7 @@ function confirmBooking() {
 }
 
 function displayBookingDetails(eventId, name, phone) {
-    // Send data to server (you may want to improve this part)
+    // Send data to server
     fetch('http://localhost:3000/confirmBooking', {
         method: 'POST',
         headers: {

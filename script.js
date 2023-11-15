@@ -19,7 +19,24 @@ function confirmBooking() {
     const eventElement = document.querySelector(`[data-id="${currentEventId}"]`);
     eventElement.remove();
 
-    // You can add code here to send details (name and phone) to the owner via email
+    // Display the booked event on the separate page
+    displayBookingDetails(currentEventId, name, phone);
 
     closePopup();
+}
+
+function displayBookingDetails(eventId, name, phone) {
+    // Send data to server (you may want to improve this part)
+    fetch('http://localhost:3000/confirmBooking', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ eventId, name, phone }),
+    })
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 }

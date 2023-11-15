@@ -18,8 +18,6 @@ li {
     padding: 10px;
     margin: 5px;
     border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
 }
 
 button {
@@ -29,4 +27,13 @@ button {
     color: #fff;
     border: none;
     border-radius: 3px;
+}
+
+#nameInput {
+    display: none;
+    margin-top: 10px;
+}
+
+#bookBtn {
+    background-color: #2ecc71;
 }
